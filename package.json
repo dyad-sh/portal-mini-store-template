@@ -80,6 +80,7 @@
     "@eslint/eslintrc": "^3.2.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^22.5.4",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",
     "autoprefixer": "^10.4.21",
