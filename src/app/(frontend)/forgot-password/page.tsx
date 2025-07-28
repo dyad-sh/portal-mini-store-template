@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { SiteHeader } from '@/components/site-header'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
@@ -52,13 +53,7 @@ export default function ForgotPasswordPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
         <div className="max-w-md w-full space-y-8">
-          {/* Header */}
-          <div className="text-center">
-            <Link href="/" className="text-2xl font-bold text-red-600">
-              🍿 Dyad Snacks
-            </Link>
-            <h2 className="mt-6 text-3xl font-bold text-gray-900">Check your email</h2>
-          </div>
+          <SiteHeader title="Check your email" />
 
           {/* Success Message */}
           <Card>
@@ -98,19 +93,17 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <Link href="/" className="text-2xl font-bold text-red-600">
-            🍿 Dyad Snacks
-          </Link>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">Reset your password</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Remember your password?{' '}
-            <Link href="/login" className="font-medium text-red-600 hover:text-red-500">
-              Sign in
-            </Link>
-          </p>
-        </div>
+        <SiteHeader
+          title="Reset your password"
+          subtitle={
+            <>
+              Remember your password?{' '}
+              <Link href="/login" className="font-medium text-red-600 hover:text-red-500">
+                Sign in
+              </Link>
+            </>
+          }
+        />
 
         {/* Forgot Password Form */}
         <Card>

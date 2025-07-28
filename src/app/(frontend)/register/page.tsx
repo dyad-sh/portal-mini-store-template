@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { SiteHeader } from '@/components/site-header'
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -90,19 +91,17 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <Link href="/" className="text-2xl font-bold text-red-600">
-            🍿 Dyad Snacks
-          </Link>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">Create your account</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Already have an account?{' '}
-            <Link href="/login" className="font-medium text-red-600 hover:text-red-500">
-              Sign in
-            </Link>
-          </p>
-        </div>
+        <SiteHeader
+          title="Create your account"
+          subtitle={
+            <>
+              Already have an account?{' '}
+              <Link href="/login" className="font-medium text-red-600 hover:text-red-500">
+                Sign in
+              </Link>
+            </>
+          }
+        />
 
         {/* Registration Form */}
         <Card>

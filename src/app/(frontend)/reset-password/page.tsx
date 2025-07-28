@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { SiteHeader } from '@/components/site-header'
 
 function ResetPasswordForm() {
   const [formData, setFormData] = useState({
@@ -92,13 +93,7 @@ function ResetPasswordForm() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
         <div className="max-w-md w-full space-y-8">
-          {/* Header */}
-          <div className="text-center">
-            <Link href="/" className="text-2xl font-bold text-red-600">
-              🍿 Dyad Snacks
-            </Link>
-            <h2 className="mt-6 text-3xl font-bold text-gray-900">Password reset successful</h2>
-          </div>
+          <SiteHeader title="Password reset successful" />
 
           {/* Success Message */}
           <Card>
@@ -133,14 +128,7 @@ function ResetPasswordForm() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <Link href="/" className="text-2xl font-bold text-red-600">
-            🍿 Dyad Snacks
-          </Link>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">Reset your password</h2>
-          <p className="mt-2 text-sm text-gray-600">Enter your new password below</p>
-        </div>
+        <SiteHeader title="Reset your password" subtitle="Enter your new password below" />
 
         {/* Reset Password Form */}
         <Card>

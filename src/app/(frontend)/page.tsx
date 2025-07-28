@@ -19,6 +19,7 @@ import { Separator } from '@/components/ui/separator'
 import { CartButton } from '@/components/cart-button'
 import { AddToCartButton } from '@/components/add-to-cart-button'
 import { LogoutButton } from '@/components/logout-button'
+import { SiteHeader } from '@/components/site-header'
 import {
   Dialog,
   DialogContent,
@@ -54,71 +55,7 @@ export default async function HomePage() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-gray-200/60 bg-white/80 backdrop-blur-2xl">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
-                🍿
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-300 to-rose-300 rounded-full blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-            </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-600 via-rose-500 to-amber-600 bg-clip-text text-transparent tracking-tight">
-              Dyad Snacks
-            </h1>
-          </Link>
-          <nav className="flex items-center gap-4">
-            {user ? (
-              <>
-                <div className="hidden sm:block px-4 py-2 rounded-full bg-gray-100/80 backdrop-blur-sm border border-gray-200/60">
-                  <span className="text-sm text-gray-600">
-                    Welcome, {(user as any).firstName || user.email}!
-                  </span>
-                </div>
-                {(user as any).role === 'admin' && (
-                  <Button
-                    asChild
-                    variant="destructive"
-                    size="sm"
-                    className="bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 border-0"
-                  >
-                    <Link href="/admin-dashboard">Admin Dashboard</Link>
-                  </Button>
-                )}
-                <Button
-                  asChild
-                  variant="outline"
-                  size="sm"
-                  className="border-gray-300 bg-white/80 backdrop-blur-sm hover:bg-gray-50 text-gray-700"
-                >
-                  <Link href="/my-orders">My Orders</Link>
-                </Button>
-                <CartButton />
-                <LogoutButton />
-              </>
-            ) : (
-              <>
-                <Button
-                  asChild
-                  variant="ghost"
-                  size="sm"
-                  className="hover:bg-gray-100 text-gray-700"
-                >
-                  <Link href="/login">Login</Link>
-                </Button>
-                <Button
-                  asChild
-                  size="sm"
-                  className="bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 border-0 text-white"
-                >
-                  <Link href="/register">Register</Link>
-                </Button>
-              </>
-            )}
-          </nav>
-        </div>
-      </header>
+      <SiteHeader variant="full" user={user} />
 
       <main className="relative z-10">
         {/* Hero Section */}
