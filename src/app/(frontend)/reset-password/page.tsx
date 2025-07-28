@@ -156,7 +156,6 @@ function ResetPasswordForm() {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  minLength={8}
                 />
               </div>
 
@@ -172,7 +171,6 @@ function ResetPasswordForm() {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  minLength={8}
                 />
               </div>
 
