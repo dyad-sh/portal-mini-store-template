@@ -6,7 +6,23 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
   },
-  auth: true,
+  auth: {
+    forgotPassword: {
+      generateEmailHTML: (data) => {
+        const resetPasswordURL = `${data?.req?.payload.config.serverURL}/reset-password?token=${data?.token}`
+
+        return `
+          <!doctype html>
+          <html>
+            <body>
+            You are receiving this because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or paste this into your browser to complete the process: ${resetPasswordURL} If you did not request this, please ignore this email and your password will remain unchanged.
+              
+            </body>
+          </html>
+        `
+      },
+    },
+  },
   access: {
     create: anyone, // Allow anyone to create a user account (for registration)
     read: adminsOrSelf, // Allow users to read their own profile, admins can read all

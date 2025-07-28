@@ -1,5 +1,7 @@
 // storage-adapter-import-placeholder
+import nodemailer from 'nodemailer'
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -56,4 +58,15 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.GMAIL_USER || '',
+    defaultFromName: process.env.EMAIL_DEFAULT_FROM_NAME || 'Dyad app',
+    transport: await nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GOOGLE_APP_PASSWORD,
+      },
+    }),
+  }),
 })
