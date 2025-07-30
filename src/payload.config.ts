@@ -51,7 +51,9 @@ export default buildConfig({
     pool: {
       connectionString: process.env.POSTGRES_URL || '',
     },
-    push: true, // This will automatically push schema changes
+    // When set to undefined or true, Payload will automatically push DB
+    // changes in dev environment.
+    push: process.env.DYAD_DISABLE_DB_PUSH === 'true' ? false : undefined,
   }),
   sharp,
   plugins: [
