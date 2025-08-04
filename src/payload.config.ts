@@ -56,10 +56,6 @@ export default buildConfig({
     push: process.env.DYAD_DISABLE_DB_PUSH === 'true' ? false : undefined,
   }),
   sharp,
-  plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
-  ],
   email: nodemailerAdapter({
     defaultFromAddress: process.env.GMAIL_USER || '',
     defaultFromName: process.env.EMAIL_DEFAULT_FROM_NAME || 'Dyad app',

@@ -21,7 +21,6 @@
     "@payloadcms/db-vercel-postgres": "3.42.0",
     "@payloadcms/email-nodemailer": "3.42.0",
     "@payloadcms/next": "3.42.0",
-    "@payloadcms/payload-cloud": "3.42.0",
     "@payloadcms/richtext-lexical": "3.42.0",
     "@payloadcms/ui": "3.42.0",
     "@radix-ui/react-accordion": "^1.2.11",
