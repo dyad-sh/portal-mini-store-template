@@ -286,9 +286,7 @@ export default async function HomePage() {
               size="sm"
               className="text-amber-600 hover:text-amber-700"
             >
-              <Link href={payloadConfig.routes.admin} target="_blank">
-                Admin Portal
-              </Link>
+              <Link href={payloadConfig.routes.admin}>Admin Portal</Link>
             </Button>
           </div>
         </div>
