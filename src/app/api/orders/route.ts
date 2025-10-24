@@ -15,26 +15,43 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { items, totalAmount } = body
+    const { items } = body
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json({ error: 'Invalid items' }, { status: 400 })
     }
 
-    if (!totalAmount || totalAmount <= 0) {
-      return NextResponse.json({ error: 'Invalid total amount' }, { status: 400 })
-    }
-
     // Validate items exist and are available
+    let computedTotal = 0
     for (const item of items) {
+      const quantity = Number(item?.quantity)
+      const snackId = item?.snack
+
+      if (
+        !snackId ||
+        !Number.isFinite(quantity) ||
+        !Number.isInteger(quantity) ||
+        quantity <= 0 ||
+        quantity > 100
+      ) {
+        return NextResponse.json({ error: 'Invalid item quantity or snack id' }, { status: 400 })
+      }
+
       const snack = await payload.findByID({
         collection: 'snacks',
-        id: item.snack,
+        id: snackId,
       })
 
       if (!snack || !snack.available) {
-        return NextResponse.json({ error: `Snack ${item.snack} is not available` }, { status: 400 })
+        return NextResponse.json({ error: `Snack ${snackId} is not available` }, { status: 400 })
       }
+
+      const price = Number(snack.price)
+      if (!Number.isFinite(price) || price < 0) {
+        return NextResponse.json({ error: `Invalid price for snack ${snackId}` }, { status: 400 })
+      }
+
+      computedTotal += price * quantity
     }
 
     // Create the order
@@ -43,7 +60,7 @@ export async function POST(request: NextRequest) {
       data: {
         user: user.id,
         items,
-        totalAmount,
+        totalAmount: computedTotal,
         status: 'pending',
         orderDate: new Date().toISOString(),
       },
