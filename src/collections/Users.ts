@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { adminsOrSelf, anyone, checkRole } from './access'
+import { admins, adminsOnly, adminsOrSelf, anyone, checkRole } from './access'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -27,7 +27,7 @@ export const Users: CollectionConfig = {
     create: anyone, // Allow anyone to create a user account (for registration)
     read: adminsOrSelf, // Allow users to read their own profile, admins can read all
     update: adminsOrSelf, // Allow users to update their own profile, admins can update all
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+    admin: adminsOnly,
   },
   fields: [
     {
@@ -45,6 +45,11 @@ export const Users: CollectionConfig = {
       ],
       defaultValue: 'user',
       required: true,
+      access: {
+        read: adminsOnly,
+        create: adminsOnly,
+        update: adminsOnly,
+      },
     },
     {
       name: 'firstName',
